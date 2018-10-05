@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ComponentWithInput from './Components/ComponentWithInput';
 import './App.css';
 
 class App extends Component {
+  state = {
+    inputValue: '',
+  };
+
+  onSearchInput = (e) => {
+    const input = e.target.value;
+
+    if (!input) {
+      this.setState({
+        ...this.state,
+        inputValue: ''
+      })}
+
+    this.setState({
+      ...this.state,
+      inputValue: input
+    })
+
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          <ComponentWithInput onSearchInput={this.onSearchInput}/>
       </div>
     );
   }
